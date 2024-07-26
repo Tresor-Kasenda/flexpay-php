@@ -19,6 +19,7 @@ final class CardPaymentData
         public float|int $amount,
         public Currency $currency,
         public string $description,
+        public ?string $callbackUrl
     ){}
 
     /**
@@ -32,6 +33,7 @@ final class CardPaymentData
             'amount' => $this->amount,
             'currency' => $this->currency,
             'description' => $this->description,
+            'callback' => $this->callbackUrl
         ]);
     }
 }

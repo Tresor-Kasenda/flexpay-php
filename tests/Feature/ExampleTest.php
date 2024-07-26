@@ -14,16 +14,15 @@ it('processes payment successfully', function () {
 
     $client = new FlexPayClient($mockClient, 'test_api_key', 'https://api.example.com');
 
-    $data = [
-        'merchant' => 'XXXXXXX',
-        'type' => '1',
-        'reference' => 'KNXXXXX',
-        'amount' => '1',
-        'currency' => 'USD',
-        'callbackUrl' => 'http://xxxxxxxxxx/callback',
-    ];
+    $data = new \Tresor\Flexpay\Data\CardPaymentData(
+        'XXXXXXX',
+        'KNXXXXX',
+        '1',
+        \Tresor\Flexpay\Data\Currency::USD->value,
+        'http://xxxxxxxxxx/callback',
+    );
 
-    $response = $client->process($data);
+    $response = $client->process($data->toJson());
 
     expect($response)->toBeArray()->toHaveKey('status', 'success');
 });
@@ -36,16 +35,16 @@ it('throws PaymentErrorException on failure', function () {
 
     $client = new FlexPayClient($mockClient, 'test_api_key', 'https://api.example.com');
 
-    $data = [
-        'merchant' => 'XXXXXXX',
-        'type' => '1',
-        'reference' => 'KNXXXXX',
-        'amount' => '1',
-        'currency' => 'USD',
-        'callbackUrl' => 'http://xxxxxxxxxx/callback',
-    ];
+    $data = new \Tresor\Flexpay\Data\CardPaymentData(
+        'XXXXXXX',
+        'KNXXXXX',
+        '1',
+        \Tresor\Flexpay\Data\Currency::USD->value,
+        'http://xxxxxxxxxx/callback',
+    );
 
-    $response = $client->process($data);
+
+    $response = $client->process($data->toJson());
 
     expect($response)->toBeInstanceOf(PaymentErrorException::class);
 });

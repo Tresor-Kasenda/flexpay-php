@@ -39,7 +39,7 @@ final class FlexPayClient implements ProcessPaymentInterface
 
             $result = json_decode($response->getBody()->getContents(), true);
 
-            if ($result['code'] === "0") {
+            if ($result['code']  == '0') {
                 if (isset($result['url'])) {
                     header('Location: ' . $result['url']);
                     exit();
