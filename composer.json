@@ -1,0 +1,27 @@
+{
+    "name": "tresor-kasenda/flexpay-php",
+    "description": "Un geteway pour effectuer le paiement par mobile money et carte visa en utilisant flexpay",
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.34"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tresor\\Flexpay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tresor kasenda",
+            "email": "tresorkasendat@gmail.com",
+            "homepage": "https://tresorkasenda.tech"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
