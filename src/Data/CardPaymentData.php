@@ -4,8 +4,15 @@ declare(strict_types=1);
 
 namespace Tresor\Flexpay\Data;
 
-final class PaymentData
+final class CardPaymentData
 {
+    /**
+     * @param string $merchant
+     * @param string $reference
+     * @param float|int $amount
+     * @param Currency $currency
+     * @param string $description
+     */
     public function __construct(
         public string $merchant,
         public string $reference,
@@ -14,6 +21,9 @@ final class PaymentData
         public string $description,
     ){}
 
+    /**
+     * @return string
+     */
     public function toJson(): string
     {
         return json_encode([

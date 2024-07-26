@@ -19,7 +19,7 @@ $clients = new \Tresor\Flexpay\FlexPayClient(
     'baseUrl',
 );
 
-$data = new \Tresor\Flexpay\Data\PaymentData(
+$data = new \Tresor\Flexpay\Data\CardPaymentData(
     'merchant',
     'reference',
     'customer',

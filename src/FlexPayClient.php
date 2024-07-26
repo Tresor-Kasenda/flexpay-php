@@ -20,16 +20,13 @@ final class FlexPayClient implements ProcessPaymentInterface
         protected Client $client,
         protected string $apiKey,
         protected string $baseUrl
-    )
-    {
-        $this->client = new Client();
-    }
+    ){}
 
     /**
-     * @param array $data
-     * @return mixed
+     * @param string $data
+     * @return array|void|PaymentErrorException|mixed
      */
-    public function process(array $data): mixed
+    public function process(string $data): mixed
     {
         try {
             $response = $this->client->post($this->baseUrl, [
@@ -40,11 +37,28 @@ final class FlexPayClient implements ProcessPaymentInterface
                 'json' => $data,
             ]);
 
-            return json_decode($response->getBody()->getContents(), true);
-        } catch (GuzzleException $e) {
+            $result = json_decode($response->getBody()->getContents(), true);
+
+            if ($result['code'] === "0") {
+                if (isset($result['url'])) {
+                    header('Location: ' . $result['url']);
+                    exit();
+                } else {
+                    return [
+                        'message' => $result['message'],
+                        'order_transaction_number' => $result['orderNumber'],
+                    ];
+                }
+            }
+        } catch (GuzzleException $exception) {
             return new PaymentErrorException(
-                "An error occurred while processing the payment : $e->getMessage()",
+                "An error occurred while processing the payment: " . $exception->getMessage(),
             );
         }
+
+        return [
+            'message' => 'Payment processing failed',
+            'code' => $result['code'] ?? 'unknown',
+        ];
     }
 }

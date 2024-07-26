@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace Tresor\Flexpay\Data;
 
+use Tresor\Flexpay\Exception\PaymentErrorException;
+
+/**
+ * Interface ProcessPaymentInterface
+ */
 interface ProcessPaymentInterface
 {
     /**
-     * @param array $data
-     * @return mixed
+     * @param string $data
+     * @return array|mixed|void|PaymentErrorException|mixed
      */
-    public function process(array $data): mixed;
+    public function process(string $data):  mixed;
 }
