@@ -7,7 +7,7 @@ A simple PHP client for interacting with the FlexPay API.
 Use Composer to install the package:
 
 ```bash
-composer require tresor/flexpay-php-php
+composer require tresor-kasenda/flexpay-php
 ```
 
 ## Usage

@@ -1,6 +1,8 @@
 {
     "name": "tresor-kasenda/flexpay-php",
-    "description": "Un geteway pour effectuer le paiement par mobile money et carte visa en utilisant flexpay",
+    "description": "A geteway for mobile money and visa card payments using flexpay",
+    "license": "MIT",
+    "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.9"
     },
@@ -28,6 +30,6 @@
         "preferred-install": "dist",
         "optimize-autoloader": true
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
